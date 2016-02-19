@@ -18,7 +18,7 @@ public class Cameras : MonoBehaviour {
 	public Transform player = null;
 	public Transform target = null;
 
-	public Vector3 speed = new Vector3 (4.0f, 2.0f, 1.0f);
+	public Vector3 speed = new Vector3 (0.5f, 0.3f, 0.1f);
 	public Vector3 nextPosition = Vector3.zero;
 
 	public enum CameraState {
@@ -36,18 +36,18 @@ public class Cameras : MonoBehaviour {
 	 */
 	void LateUpdate () {
 		switch (cameraState) {
-			case CameraState.none:
-				break;
-			case CameraState.followPosition:
-				FollowPosition ();
-				break;
-			case CameraState.lookAtPlayer:
-				LookAtPlayer ();
-				break;
-			case CameraState.both:
-				FollowPosition ();
-				LookAtPlayer ();
-				break;
+		case CameraState.none:
+			break;
+		case CameraState.followPosition:
+			FollowPosition ();
+			break;
+		case CameraState.lookAtPlayer:
+			LookAtPlayer ();
+			break;
+		case CameraState.both:
+			FollowPosition ();
+			LookAtPlayer ();
+			break;
 		}
 	}
 

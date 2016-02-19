@@ -1,18 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement: MonoBehaviour
-{
+public class PlayerMovement: MonoBehaviour {
 
 	// Direction Vectors.
 	private Vector3 moveDirection = Vector3.zero;
 	private Vector3 rotateDirection = Vector3.zero;
 
 	// Moving Speeds.
-	public float moveSpeed = 5.0f;
+	public float moveSpeed = 7.0f;
 	public float rotateSpeed = 180.0f;
-	public float jumpSpeed = 8.0F;
-	public float gravity = 20.0F;
+	public float jumpSpeed = 8.0f;
+	public float gravity = 20.0f;
 
 	// Choose to enable/disable side-walking.
 	public bool sideWalk = true;
@@ -25,8 +24,7 @@ public class PlayerMovement: MonoBehaviour
 	/** 
 	 * Update is called once per frame.
 	 */
-	void Update ()
-	{
+	void Update () {
 		// Read button and assign appropriate values.
 		ButtonMapper ();
 		// Call Player Movement.
@@ -36,8 +34,7 @@ public class PlayerMovement: MonoBehaviour
 	/** 
 	 * Maps the buttons to float values.
 	 */
-	void ButtonMapper ()
-	{
+	void ButtonMapper () {
 		// Vertical Movement.
 		if (Input.GetKey (KeyCode.UpArrow)) {
 			verticalBtn = 1;
@@ -71,28 +68,39 @@ public class PlayerMovement: MonoBehaviour
 	/*
 	 * Movement Directions.
 	*/
-	void Movement ()
-	{
+	void Movement () {
 		CharacterController controller = GetComponent<CharacterController> ();
 
-		// If the CharacterController is touching the ground, then enable it to move.
+		// If the CharacterController is touching the ground, then enable it to move
+		// and jump.
 		if (controller.isGrounded) {
 			// Apply direction values.
 			moveDirection = new Vector3 (horizontalBtn, 0, verticalBtn);
 			moveDirection = transform.TransformDirection (moveDirection);
-			rotateDirection = new Vector3 (0, rotationBtn, 0);
 
 			// Apply speeds.
 			moveDirection *= moveSpeed;
 			rotateDirection *= rotateSpeed;
 
 			// Jump.
-			// TODO: Fix the jump, or when the player is in the air to be able to move around.
 			if (Input.GetKey (KeyCode.Space)) {
 				moveDirection.y = jumpSpeed;
 			}
+		} else {
+			// If the CharacterController is on the air, then enable it to move.
+			// Apply direction values.
+			moveDirection = new Vector3 (horizontalBtn, moveDirection.y, verticalBtn);
+			moveDirection = transform.TransformDirection (moveDirection);
+
+			// Apply speeds.
+			moveDirection.x *= moveSpeed;
+			moveDirection.z *= moveSpeed;
 		}
-			
+
+		// Apply rotation.
+		rotateDirection = new Vector3 (0, rotationBtn, 0);
+		rotateDirection *= rotateSpeed;
+
 		// Apply Gravity.
 		moveDirection.y -= gravity * Time.deltaTime;
 
