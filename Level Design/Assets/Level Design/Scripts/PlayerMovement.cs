@@ -3,74 +3,97 @@ using System.Collections;
 
 public class PlayerMovement: MonoBehaviour {
 
+	// Direction Vectors.
+	private Vector3 moveDirection = Vector3.zero;
+	private Vector3 rotateDirection = Vector3.zero;
+
+	// Moving Speeds.
 	public float moveSpeed = 5.0f;
 	public float rotateSpeed = 180.0f;
+	public float jumpSpeed = 8.0F;
+	public float gravity = 20.0F;
+
+	// Choose to enable/disable side-walking.
 	public bool sideWalk = true;
-	public float down = 0.0f;
+
+	// Button initial values. Possible values: (-1,0,1).
+	private float verticalBtn = 0;
+	private float horizontalBtn = 0;
+	private float rotationBtn = 0;
 	
-	/*
-	 * Update is called once per frame
-	*/
+	/** 
+	 * Update is called once per frame.
+	 */
 	void Update () {
+		// Read button and assign appropriate values.
+		ButtonMapper();
 		// Call Player Movement.
-		Movement ();
+		Movement();
 	}
-
-
-	/*     
-	 * Movement Directions.
-	*/
-	void Movement () {
-		// Horizontal Movement (Forwards and Backwards).
+		
+	/** 
+	 * Maps the buttons to float values.
+	 */
+	void ButtonMapper() {
+		// Vertical Movement.
 		if (Input.GetKey (KeyCode.UpArrow)) {
-			//Debug.Log ("Key UpArrow Pressed.");
-			this.transform.Translate (new Vector3 (0, down * Time.deltaTime, moveSpeed * Time.deltaTime)); 
+			verticalBtn = 1;
 		} else if (Input.GetKey (KeyCode.DownArrow)) {
-			//Debug.Log ("Key DownArrow Pressed.");
-			this.transform.Translate (new Vector3 (0, down * Time.deltaTime, -moveSpeed * Time.deltaTime)); 
-		} 
-			
-		// Horizontal Movement (Rotate).
-		if (Input.GetKey (KeyCode.RightArrow)) {
-			//Debug.Log ("Key RightArrow Pressed.");
-			this.transform.Rotate (new Vector3 (0, rotateSpeed * Time.deltaTime, 0)); 
-		} else if (Input.GetKey (KeyCode.LeftArrow)) {
-			//Debug.Log ("Key LeftArrow Pressed.");
-			this.transform.Rotate (new Vector3 (0, -rotateSpeed * Time.deltaTime, 0)); 
+			verticalBtn = -1;
+		} else {
+			verticalBtn = 0;
 		}
 
-		// Horizontal (Side Walk).
+		// Rotation Movement.
+		if (Input.GetKey (KeyCode.RightArrow)) {
+			rotationBtn = 1;
+		} else if (Input.GetKey (KeyCode.LeftArrow)) {
+			rotationBtn = -1;
+		} else {
+			rotationBtn = 0;
+		}
+
+		// Horizontal Movement(Side Walk).
 		if (sideWalk) {
 			if (Input.GetKey (KeyCode.D)) {
-				// D: Go right.
-				//Debug.Log ("Key D Pressed.");
-				this.transform.Translate (new Vector3 (moveSpeed * Time.deltaTime, down * Time.deltaTime, 0));
+				horizontalBtn = 1;
 			} else if (Input.GetKey (KeyCode.A)) {
-				// A: Go left.
-				//Debug.Log ("Key A Pressed.");
-				this.transform.Translate (new Vector3 (-moveSpeed * Time.deltaTime, down * Time.deltaTime, 0));
+				horizontalBtn = -1;
+			} else {
+				horizontalBtn = 0;
 			}
 		}
+	}
 
-		// Vertical Movement (Float Up and Down).
-		if (Input.GetKey (KeyCode.W)) {
-			// W: Go up.
-			//Debug.Log ("Key W Pressed.");
-			this.transform.Translate (new Vector3 (0, moveSpeed * Time.deltaTime, 0));
-		} else if (Input.GetKey (KeyCode.S)) {
-			// S: Go down.
-			//Debug.Log ("Key S Pressed.");
-			this.transform.Translate (new Vector3 (0, -moveSpeed * Time.deltaTime, 0));
+	/*
+	 * Movement Directions.
+	*/
+	void Movement() {
+		CharacterController controller = GetComponent<CharacterController> ();
+
+		// If the CharacterController is touching the ground, then enable it to move.
+		if (controller.isGrounded) {
+			// Apply direction values.
+			moveDirection = new Vector3 (horizontalBtn, 0, verticalBtn);
+			moveDirection = transform.TransformDirection (moveDirection);
+			rotateDirection = new Vector3 (0, rotationBtn, 0);
+
+			// Apply speeds.
+			moveDirection *= moveSpeed;
+			rotateDirection *= rotateSpeed;
+
+			// Jump.
+			// TODO: Fix the jump, or when the player is in the air to be able to move around.
+			if (Input.GetKey (KeyCode.Space)) {
+				moveDirection.y = jumpSpeed;
+			}
 		}
-	}
+			
+		// Apply Gravity.
+		moveDirection.y -= gravity * Time.deltaTime;
 
-	void OnCollisionExit (Collision collisionInfo) {
-		Debug.Log ("No longer in contact with " + collisionInfo.transform.name);
-		down = -5f;
-	}
-
-	void OnCollisionEnter (Collision collisionInfo) {
-		Debug.Log ("In contact with " + collisionInfo.transform.name);
-		down = 0f;
+		// Apply deltaTime.
+		controller.Move(moveDirection * Time.deltaTime);
+		transform.Rotate (rotateDirection * Time.deltaTime);
 	}
 }
