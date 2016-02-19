@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement: MonoBehaviour {
+public class PlayerMovement: MonoBehaviour
+{
 
 	// Direction Vectors.
 	private Vector3 moveDirection = Vector3.zero;
@@ -20,21 +21,23 @@ public class PlayerMovement: MonoBehaviour {
 	private float verticalBtn = 0;
 	private float horizontalBtn = 0;
 	private float rotationBtn = 0;
-	
+
 	/** 
 	 * Update is called once per frame.
 	 */
-	void Update () {
+	void Update ()
+	{
 		// Read button and assign appropriate values.
-		ButtonMapper();
+		ButtonMapper ();
 		// Call Player Movement.
-		Movement();
+		Movement ();
 	}
-		
+
 	/** 
 	 * Maps the buttons to float values.
 	 */
-	void ButtonMapper() {
+	void ButtonMapper ()
+	{
 		// Vertical Movement.
 		if (Input.GetKey (KeyCode.UpArrow)) {
 			verticalBtn = 1;
@@ -68,7 +71,8 @@ public class PlayerMovement: MonoBehaviour {
 	/*
 	 * Movement Directions.
 	*/
-	void Movement() {
+	void Movement ()
+	{
 		CharacterController controller = GetComponent<CharacterController> ();
 
 		// If the CharacterController is touching the ground, then enable it to move.
@@ -93,7 +97,7 @@ public class PlayerMovement: MonoBehaviour {
 		moveDirection.y -= gravity * Time.deltaTime;
 
 		// Apply deltaTime.
-		controller.Move(moveDirection * Time.deltaTime);
+		controller.Move (moveDirection * Time.deltaTime);
 		transform.Rotate (rotateDirection * Time.deltaTime);
 	}
 }

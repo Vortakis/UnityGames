@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Repository xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>MonoDevelop Add-in Repository (Beta channel)</Name>
+  <Url>http://addins.monodevelop.com/Beta/Win32/5.9.6/root.mrep</Url>
+  <Addin>
+    <Url>FormsPlayerXS.FormsPlayerXS-0.5.mpack</Url>
+    <Addin>
+      <Id>FormsPlayerXS</Id>
+      <Namespace>FormsPlayerXS</Namespace>
+      <Name>Forms Player for XS</Name>
+      <Version>0.5</Version>
+      <BaseVersion />
+      <Author>Prashant</Author>
+      <Copyright>Prashant</Copyright>
+      <Url />
+      <Description>Xamarin Forms player for Xamarin Studio</Description>
+      <Category>Mobile Development</Category>
+      <Dependencies>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Ide</AddinId>
+          <Version>5.0</Version>
+        </AddinDependency>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Core</AddinId>
+          <Version>5.0</Version>
+        </AddinDependency>
+      </Dependencies>
+      <OptionalDependencies />
+      <Properties>
+        <Property name="DownloadSize">237483</Property>
+      </Properties>
+    </Addin>
+  </Addin>
+  <Addin>
+    <Url>GlassAddin.GlassAddin-1.1.mpack</Url>
+    <Addin>
+      <Id>GlassAddin</Id>
+      <Namespace>GlassAddin</Namespace>
+      <Name>Google Glass Extension</Name>
+      <Version>1.1</Version>
+      <BaseVersion />
+      <Author>ChrisNTR</Author>
+      <Copyright>ChrisNTR</Copyright>
+      <Url>http://chrisntr.github.io/</Url>
+      <Description>Templates and helpers for Google Glass development.</Description>
+      <Category>Mobile Development</Category>
+      <Dependencies />
+      <OptionalDependencies />
+      <Properties>
+        <Property name="DownloadSize">15230</Property>
+      </Properties>
+    </Addin>
+  </Addin>
+  <Addin>
+    <Url>JH.MvvmCross.FileTemplate.MvvmCrossProjectTemplate-0.1.0.mpack</Url>
+    <Addin>
+      <Id>MvvmCrossProjectTemplate</Id>
+      <Namespace>JH.MvvmCross.FileTemplate</Namespace>
+      <Name>MvvmCross File templates</Name>
+      <Version>0.1.0</Version>
+      <BaseVersion />
+      <Author>Jonah Hulselmans</Author>
+      <Copyright>Jonah Hulselmans</Copyright>
+      <Url />
+      <Description>With this addin you can add mvx views and viewmodels to your project.</Description>
+      <Category>IDE extensions</Category>
+      <Dependencies>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Xamarin.Ide</AddinId>
+          <Version>5.7</Version>
+        </AddinDependency>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Ide</AddinId>
+          <Version>5.7</Version>
+        </AddinDependency>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Core</AddinId>
+          <Version>5.7</Version>
+        </AddinDependency>
+      </Dependencies>
+      <OptionalDependencies />
+      <Properties>
+        <Property name="DownloadSize">5127</Property>
+      </Properties>
+    </Addin>
+  </Addin>
+  <Addin>
+    <Url>MonoDevelop.MicroFramework-0.4.mpack</Url>
+    <Addin>
+      <Id>MicroFramework</Id>
+      <Namespace>MonoDevelop</Namespace>
+      <Name>MicroFramework</Name>
+      <Version>0.4</Version>
+      <BaseVersion />
+      <Author>David Karlaš</Author>
+      <Copyright>MIT</Copyright>
+      <Url />
+      <Description>Provides support for .Net MicroFramework developing, deploying and debugging.</Description>
+      <Category>IDE extensions</Category>
+      <Dependencies>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.MacPlatform</AddinId>
+          <Version>5.0</Version>
+        </AddinDependency>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Debugger</AddinId>
+          <Version>5.0</Version>
+        </AddinDependency>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Ide</AddinId>
+          <Version>5.0</Version>
+        </AddinDependency>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Core</AddinId>
+          <Version>5.0</Version>
+        </AddinDependency>
+      </Dependencies>
+      <OptionalDependencies />
+      <Properties>
+        <Property name="DownloadSize">12128757</Property>
+      </Properties>
+    </Addin>
+  </Addin>
+  <Addin>
+    <Url>MonoDevelop.R7.DnnTemplates-0.4.0.mpack</Url>
+    <Addin>
+      <Id>R7.DnnTemplates</Id>
+      <Namespace>MonoDevelop</Namespace>
+      <Name>DNN Platform Templates &amp; Support</Name>
+      <Version>0.4.0</Version>
+      <BaseVersion />
+      <Author>Roman M. Yagodin</Author>
+      <Copyright />
+      <Url>https://github.com/roman-yagodin/R7.DnnTemplates</Url>
+      <Description>Templates for module, skin object and packaging projects for DNN Platform. Also provides syntax highlighting for DNN manifest files and SqlDataProvider scripts.</Description>
+      <Category>Web Development</Category>
+      <Dependencies />
+      <OptionalDependencies />
+      <Properties>
+        <Property name="Name">DNN Platform Templates &amp; Support</Property>
+        <Property name="Name" locale="ru-RU">Шаблоны и поддержка для DNN Platform</Property>
+        <Property name="Category">Web Development</Property>
+        <Property name="Description">Templates for module, skin object and packaging projects for DNN Platform. Also provides syntax highlighting for DNN manifest files and SqlDataProvider scripts.</Property>
+        <Property name="Author">Roman M. Yagodin</Property>
+        <Property name="Url">https://github.com/roman-yagodin/R7.DnnTemplates</Property>
+        <Property name="Icon32">_addin_files/2ecf003a.png</Property>
+        <Property name="UpdateRank">Minor</Property>
+        <Property name="ReleaseNotesFile">releaseNotes.txt</Property>
+        <Property name="DownloadSize">26767</Property>
+      </Properties>
+    </Addin>
+  </Addin>
+  <Addin>
+    <Url>MonoDevelop.Refactoring.Unity-5.0.mpack</Url>
+    <Addin>
+      <Id>MonoDevelop.Refactoring.Unity</Id>
+      <Namespace />
+      <Name>MonoDevelop.Refactoring.Unity</Name>
+      <Version>5.0</Version>
+      <BaseVersion />
+      <Author>makarov@alternativaplatform.com</Author>
+      <Copyright>Copyrigth (c) 2014 AlternativaPlatform.com</Copyright>
+      <Url>https://github.com/sergerus/MonoDevelop.Refactoring.Unity</Url>
+      <Description>Tracks file operations and handle Unity3d meta files.</Description>
+      <Category>IDE extensions</Category>
+      <Dependencies />
+      <OptionalDependencies />
+      <Properties>
+        <Property name="DownloadSize">6128</Property>
+      </Properties>
+    </Addin>
+  </Addin>
+  <Addin>
+    <Url>MonoDevelop.Xwt-1.1.0.mpack</Url>
+    <Addin>
+      <Id>Xwt</Id>
+      <Namespace>MonoDevelop</Namespace>
+      <Name>Xwt Project Support</Name>
+      <Version>1.1.0</Version>
+      <BaseVersion />
+      <Author>Vsevolod Kukol</Author>
+      <Copyright>Vsevolod Kukol</Copyright>
+      <Url>https://github.com/sevoku/MonoDevelop.Xwt.git</Url>
+      <Description>Adds Xwt cross-platform UI project and file templates, including executable projects for supported Xwt backends and automatic platform detection.</Description>
+      <Category>IDE extensions</Category>
+      <Dependencies>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.VersionControl.Git</AddinId>
+          <Version>5.9</Version>
+        </AddinDependency>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.VersionControl</AddinId>
+          <Version>5.9</Version>
+        </AddinDependency>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Ide</AddinId>
+          <Version>5.9</Version>
+        </AddinDependency>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Core</AddinId>
+          <Version>5.9</Version>
+        </AddinDependency>
+      </Dependencies>
+      <OptionalDependencies />
+      <Properties>
+        <Property name="DownloadSize">25623</Property>
+      </Properties>
+    </Addin>
+  </Addin>
+  <Addin>
+    <Url>ResxEditor.ResxEditor-0.2.0.mpack</Url>
+    <Addin>
+      <Id>ResxEditor</Id>
+      <Namespace>ResxEditor</Namespace>
+      <Name>ResxEditor</Name>
+      <Version>0.2.0</Version>
+      <BaseVersion />
+      <Author>Caleb Morris</Author>
+      <Copyright>calebmorris</Copyright>
+      <Url>https://github.com/CalebMorris/Xamarin-ResxEditor</Url>
+      <Description>Resx editor for simplified resource handling.
+
+Currently only works with string resources.
+
+Support: https://github.com/CalebMorris/Xamarin-ResxEditor</Description>
+      <Category>IDE extensions</Category>
+      <Dependencies>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Ide</AddinId>
+          <Version>5.0</Version>
+        </AddinDependency>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Core</AddinId>
+          <Version>5.0</Version>
+        </AddinDependency>
+      </Dependencies>
+      <OptionalDependencies />
+      <Properties>
+        <Property name="DownloadSize">14585</Property>
+      </Properties>
+    </Addin>
+  </Addin>
+  <Addin>
+    <Url>ResxTemplates.ResxTemplates-0.1.1.mpack</Url>
+    <Addin>
+      <Id>ResxTemplates</Id>
+      <Namespace>ResxTemplates</Namespace>
+      <Name>ResxTemplates</Name>
+      <Version>0.1.1</Version>
+      <BaseVersion />
+      <Author>calebmorris</Author>
+      <Copyright>calebmorris</Copyright>
+      <Url />
+      <Description>ResxTemplates</Description>
+      <Category>IDE extensions</Category>
+      <Dependencies>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Ide</AddinId>
+          <Version>5.0</Version>
+        </AddinDependency>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Core</AddinId>
+          <Version>5.0</Version>
+        </AddinDependency>
+      </Dependencies>
+      <OptionalDependencies />
+      <Properties>
+        <Property name="DownloadSize">4058</Property>
+      </Properties>
+    </Addin>
+  </Addin>
+  <Addin>
+    <Url>SSHDebugger.SSHDebugger-0.4.mpack</Url>
+    <Addin>
+      <Id>SSHDebugger</Id>
+      <Namespace>SSHDebugger</Namespace>
+      <Name>SSH Debugger</Name>
+      <Version>0.4</Version>
+      <BaseVersion />
+      <Author>Stuart Johnson, Logic Ethos Ltd</Author>
+      <Copyright>Stuart Johnson</Copyright>
+      <Url>https://github.com/logicethos/SSHDebugger</Url>
+      <Description>Deploy, execute and debug your .NET apps running on a remote computer, directly from Monodevelop and Xamarin Studio. Includes a full XTerm console, on the Linux version. Standard text window on Win and Mac.</Description>
+      <Category>Debugging</Category>
+      <Dependencies>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Debugger.Soft</AddinId>
+          <Version>5.9</Version>
+        </AddinDependency>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Debugger</AddinId>
+          <Version>5.9</Version>
+        </AddinDependency>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Ide</AddinId>
+          <Version>5.9</Version>
+        </AddinDependency>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Core</AddinId>
+          <Version>5.9</Version>
+        </AddinDependency>
+      </Dependencies>
+      <OptionalDependencies />
+      <Properties>
+        <Property name="Name">SSH Debugger (VTE Xterm version)</Property>
+        <Property name="Category">Debugging</Property>
+        <Property name="Name" locale="en-GB">SSH Debugger</Property>
+        <Property name="Description">Deploy, execute and debug your .NET apps running on a remote computer, directly from Monodevelop and Xamarin Studio. Includes a full XTerm console, on the Linux version. Standard text window on Win and Mac.</Property>
+        <Property name="Author">Stuart Johnson, Logic Ethos Ltd</Property>
+        <Property name="Url">https://github.com/logicethos/SSHDebugger</Property>
+        <Property name="UpdateRank">MySpecialTag:Normal</Property>
+        <Property name="PreviewImage">_addin_files/1c2e41ba.png</Property>
+        <Property name="DownloadSize">645116</Property>
+      </Properties>
+    </Addin>
+  </Addin>
+  <Addin>
+    <Url>Unity.Utilities-5.0.mpack</Url>
+    <Addin>
+      <Id>Unity.Utilities</Id>
+      <Namespace />
+      <Name>Utilities for use with Unity</Name>
+      <Version>5.0</Version>
+      <BaseVersion />
+      <Author>Levi Bard</Author>
+      <Copyright>MIT X11</Copyright>
+      <Url>http://github.com/Unity-Technologies/MonoDevelop.Debugger.Soft.Unity</Url>
+      <Description>Utilities for use with Unity</Description>
+      <Category>Unity</Category>
+      <Dependencies />
+      <OptionalDependencies />
+      <Properties>
+        <Property name="DownloadSize">7184</Property>
+      </Properties>
+    </Addin>
+  </Addin>
+  <Addin>
+    <Url>VimAddin.VimAddin-1.1.11.mpack</Url>
+    <Addin>
+      <Id>VimAddin</Id>
+      <Namespace>VimAddin</Namespace>
+      <Name>VimAddin</Name>
+      <Version>1.1.11</Version>
+      <BaseVersion />
+      <Author>atsui</Author>
+      <Copyright>atsui</Copyright>
+      <Url />
+      <Description>A fork of MonoDevelop vi modes. See https://github.com/alextsui05/VimAddin</Description>
+      <Category>IDE extensions</Category>
+      <Dependencies>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Ide</AddinId>
+          <Version>5.0</Version>
+        </AddinDependency>
+        <AddinDependency>
+          <AddinId>::MonoDevelop.Core</AddinId>
+          <Version>5.0</Version>
+        </AddinDependency>
+      </Dependencies>
+      <OptionalDependencies />
+      <Properties>
+        <Property name="DownloadSize">38131</Property>
+      </Properties>
+    </Addin>
+  </Addin>
+</Repository>
