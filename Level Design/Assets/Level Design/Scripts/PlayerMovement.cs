@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class PlayerMovement: MonoBehaviour {
+	private CharacterController controller;
 
 	// Direction Vectors.
 	private Vector3 moveDirection = Vector3.zero;
@@ -25,10 +26,16 @@ public class PlayerMovement: MonoBehaviour {
 	 * Update is called once per frame.
 	 */
 	void Update () {
+		controller = GetComponent<CharacterController> ();
+
 		// Read button and assign appropriate values.
 		ButtonMapper ();
 		// Call Player Movement.
 		Movement ();
+
+		//MoveOnSteepSlope ();
+
+
 	}
 
 	/** 
@@ -69,8 +76,6 @@ public class PlayerMovement: MonoBehaviour {
 	 * Movement Directions.
 	*/
 	void Movement () {
-		CharacterController controller = GetComponent<CharacterController> ();
-
 		// If the CharacterController is touching the ground, then enable it to move
 		// and jump.
 		if (controller.isGrounded) {
@@ -107,5 +112,21 @@ public class PlayerMovement: MonoBehaviour {
 		// Apply deltaTime.
 		controller.Move (moveDirection * Time.deltaTime);
 		transform.Rotate (rotateDirection * Time.deltaTime);
+	}
+
+	void MoveOnSteepSlope () {
+		RaycastHit hit;
+
+		Vector3 slopeAdjust = Vector3.zero;
+	
+		if (Physics.Raycast (transform.position, -Vector3.up, out hit)) {
+			if (hit.distance < 5.0) {
+				slopeAdjust.y = hit.distance - controller.height / 2;
+			}
+		}
+
+		moveDirection -= slopeAdjust / Time.deltaTime;
+	
+
 	}
 }
