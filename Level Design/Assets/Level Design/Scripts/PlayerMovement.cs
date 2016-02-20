@@ -2,22 +2,35 @@
 using System.Collections;
 
 public class PlayerMovement: MonoBehaviour {
+
+	/* CharacterState Enum indicates current state of player. */
+	public enum CharacterState {
+		Idle = 0,
+		Walking = 1,
+		Jumping = 2,
+		WalkingOnAir = 3
+	}
+
+	/* CharacterController variable. */
 	private CharacterController controller;
 
-	// Direction Vectors.
+	/* CharacterState variable, to store the current state. */
+	public CharacterState characterState = CharacterState.WalkingOnAir;
+
+	/* Direction Variables. */
 	private Vector3 moveDirection = Vector3.zero;
 	private Vector3 rotateDirection = Vector3.zero;
 
-	// Moving Speeds.
+	/* Applied forces and speeds. */
 	public float moveSpeed = 7.0f;
 	public float rotateSpeed = 180.0f;
 	public float jumpSpeed = 8.0f;
 	public float gravity = 20.0f;
 
-	// Choose to enable/disable side-walking.
+	/* sideWalk: Choose to enable/disable side-walking. */
 	public bool sideWalk = true;
 
-	// Button initial values. Possible values: (-1,0,1).
+	/* Movement buttons initial values. Possible values: (-1,0,1). */
 	private float verticalBtn = 0;
 	private float horizontalBtn = 0;
 	private float rotationBtn = 0;
@@ -26,16 +39,25 @@ public class PlayerMovement: MonoBehaviour {
 	 * Update is called once per frame.
 	 */
 	void Update () {
+		// Get CharacterController.
 		controller = GetComponent<CharacterController> ();
 
-		// Read button and assign appropriate values.
+		// Idle State: No force is applied, and player is sitting idle on the ground.
+		if (controller.isGrounded) {
+			characterState = CharacterState.Idle;
+		}
+
+		// Input Mapper and assign appropriate values for movement.
 		ButtonMapper ();
-		// Call Player Movement.
+
+		// Allow Player Movement.
 		Movement ();
 
-		//MoveOnSteepSlope ();
+		// Allow Player Moving on a slope.
+		MoveOnSteepSlope ();
 
-
+		// Apply movement.
+		controller.Move (moveDirection * Time.deltaTime);
 	}
 
 	/** 
@@ -45,8 +67,18 @@ public class PlayerMovement: MonoBehaviour {
 		// Vertical Movement.
 		if (Input.GetKey (KeyCode.UpArrow)) {
 			verticalBtn = 1;
+			if (characterState == CharacterState.Jumping || characterState == CharacterState.WalkingOnAir) {
+				characterState = CharacterState.WalkingOnAir;
+			} else {
+				characterState = CharacterState.Walking;
+			}
 		} else if (Input.GetKey (KeyCode.DownArrow)) {
 			verticalBtn = -1;
+			if (characterState == CharacterState.Jumping || characterState == CharacterState.WalkingOnAir) {
+				characterState = CharacterState.WalkingOnAir;
+			} else {
+				characterState = CharacterState.Walking;
+			}
 		} else {
 			verticalBtn = 0;
 		}
@@ -64,17 +96,27 @@ public class PlayerMovement: MonoBehaviour {
 		if (sideWalk) {
 			if (Input.GetKey (KeyCode.D)) {
 				horizontalBtn = 1;
+				if (characterState == CharacterState.Jumping || characterState == CharacterState.WalkingOnAir) {
+					characterState = CharacterState.WalkingOnAir;
+				} else {
+					characterState = CharacterState.Walking;
+				}
 			} else if (Input.GetKey (KeyCode.A)) {
 				horizontalBtn = -1;
+				if (characterState == CharacterState.Jumping || characterState == CharacterState.WalkingOnAir) {
+					characterState = CharacterState.WalkingOnAir;
+				} else {
+					characterState = CharacterState.Walking;
+				}
 			} else {
 				horizontalBtn = 0;
 			}
 		}
 	}
 
-	/*
+	/** 
 	 * Movement Directions.
-	*/
+	 */
 	void Movement () {
 		// If the CharacterController is touching the ground, then enable it to move
 		// and jump.
@@ -88,8 +130,10 @@ public class PlayerMovement: MonoBehaviour {
 			rotateDirection *= rotateSpeed;
 
 			// Jump.
-			if (Input.GetKey (KeyCode.Space)) {
+			if (Input.GetKey (KeyCode.F)) {
 				moveDirection.y = jumpSpeed;
+				characterState = CharacterState.Jumping;
+				
 			}
 		} else {
 			// If the CharacterController is on the air, then enable it to move.
@@ -110,23 +154,28 @@ public class PlayerMovement: MonoBehaviour {
 		moveDirection.y -= gravity * Time.deltaTime;
 
 		// Apply deltaTime.
-		controller.Move (moveDirection * Time.deltaTime);
+
 		transform.Rotate (rotateDirection * Time.deltaTime);
 	}
 
+	/**
+	 * Move on steep slope.
+	 */
 	void MoveOnSteepSlope () {
-		RaycastHit hit;
 
-		Vector3 slopeAdjust = Vector3.zero;
+		if (characterState != CharacterState.Jumping && characterState != CharacterState.WalkingOnAir) {
+			RaycastHit hit;
+
+			Vector3 slopeAdjust = Vector3.zero;
 	
-		if (Physics.Raycast (transform.position, -Vector3.up, out hit)) {
-			if (hit.distance < 5.0) {
-				slopeAdjust.y = hit.distance - controller.height / 2;
+			if (Physics.Raycast (transform.position, -Vector3.up, out hit)) {
+				if (hit.distance < 5.0) {
+					slopeAdjust.y = hit.distance - controller.height / 2;
+				}
 			}
-		}
 
-		moveDirection -= slopeAdjust / Time.deltaTime;
-	
+			moveDirection -= slopeAdjust / Time.deltaTime;
+		}
 
 	}
 }

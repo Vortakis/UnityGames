@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeTemplates version="3.0">
+  <CodeTemplate version="2.0">
+    <Header>
+      <_Group>C#</_Group>
+      <Version>1.0</Version>
+      <MimeType>text/x-csharp</MimeType>
+      <Shortcut>class</Shortcut>
+      <_Description>Template for class declaration</_Description>
+      <TemplateType>Expansion, SurroundsWith</TemplateType>
+    </Header>
+    <Variables>
+      <Variable name="name" isIdentifier="true">
+        <Default>MyClass</Default>
+        <_ToolTip>Class name</_ToolTip>
+      </Variable>
+    </Variables>
+    <Code><![CDATA[class $name$ {
+	$selected$$end$
+}]]></Code>
+  </CodeTemplate>
+</CodeTemplates>

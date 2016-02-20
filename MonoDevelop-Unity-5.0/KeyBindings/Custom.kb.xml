@@ -27,7 +27,7 @@
     <binding command="Pad|MonoDevelop.DesignerSupport.DocumentOutlinePad" shortcut="Control+R|U" />
     <binding command="MonoDevelop.Ide.Commands.EditCommands.AddCodeComment" shortcut="Control+Alt+C" />
     <binding command="MonoDevelop.Refactoring.RefactoryCommands.QuickFix" shortcut="Alt+F" />
-    <binding command="MonoDevelop.Ide.CodeFormatting.CodeFormattingCommands.FormatBuffer" shortcut="Shift+F" />
+    <binding command="MonoDevelop.Ide.CodeFormatting.CodeFormattingCommands.FormatBuffer" shortcut="Alt+Shift+D" />
     <binding command="MonoDevelop.Ide.Commands.EditCommands.ToggleCodeComment" shortcut="Shift+/" />
   </scheme>
 </schemes>

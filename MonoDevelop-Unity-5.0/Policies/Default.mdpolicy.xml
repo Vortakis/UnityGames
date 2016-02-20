@@ -1,4 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Policies>
-  <PolicySet name="Default" id="Default" />
+  <PolicySet name="Default" id="Default">
+    <TextStylePolicy inheritsSet="null" scope="text/x-csharp" />
+    <CSharpFormattingPolicy inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp">
+      <NamespaceBraceStyle>EndOfLine</NamespaceBraceStyle>
+      <ClassBraceStyle>EndOfLine</ClassBraceStyle>
+      <InterfaceBraceStyle>EndOfLine</InterfaceBraceStyle>
+      <StructBraceStyle>EndOfLine</StructBraceStyle>
+      <EnumBraceStyle>EndOfLine</EnumBraceStyle>
+      <MethodBraceStyle>EndOfLine</MethodBraceStyle>
+      <ConstructorBraceStyle>EndOfLine</ConstructorBraceStyle>
+      <DestructorBraceStyle>EndOfLine</DestructorBraceStyle>
+      <AfterDelegateDeclarationParameterComma>True</AfterDelegateDeclarationParameterComma>
+    </CSharpFormattingPolicy>
+  </PolicySet>
 </Policies>

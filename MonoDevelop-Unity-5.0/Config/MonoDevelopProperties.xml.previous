@@ -12,7 +12,7 @@
   </Property>
   <Property key="SharpDevelop.Workbench.WorkbenchMemento">
     <Property key="bounds" value="0, 57, 1820, 930" />
-    <Property key="windowState" value="0" />
+    <Property key="windowState" value="Maximized" />
     <Property key="fullscreen" value="False" />
     <Property key="toolbarStatus">
       <DockToolbarFrameStatus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
@@ -38,7 +38,7 @@
   <Property key="MonoDevelop.Ide.ExtensibleTreeView.Zoom.MonoDevelop.NUnit.TestPad" value="1" />
   <Property key="MonoDevelop.Core.Gui.CurrentWorkbenchLayout" value="Solution" />
   <Property key="MonoDevelop.Ide.AddinUpdater.CheckForUpdates" value="True" />
-  <Property key="MonoDevelop.Ide.AddinUpdater.LastCheck" value="02/19/2016 12:53:57" />
+  <Property key="MonoDevelop.Ide.AddinUpdater.LastCheck" value="02/20/2016 18:19:17" />
   <Property key="MonoDevelop.Ide.AddinUpdater.UpdateSpanUnit" value="Day" />
   <Property key="MonoDevelop.Ide.AddinUpdater.UpdateSpanValue" value="1" />
   <Property key="MonoDevelop.Core.Gui.Dialog.TipOfTheDayView.ShowTipsAtStartup" value="False" />
@@ -508,9 +508,6 @@
   <Property key="refactoring.codeissues.text/x-csharp.ICSharpCode.NRefactory.CSharp.Refactoring.ReplaceWithSingleCallToSumIssue" value="Suggestion" />
   <Property key="refactoring.codeissues.text/x-csharp.ICSharpCode.NRefactory.CSharp.Refactoring.ReplaceWithSingleCallToSumIssue.isEnabled" value="True" />
   <Property key="ContextActions.text/x-csharp" value="" />
-  <Property key="FontProperties" />
-  <Property key="MonoDevelop.TextEditor.Document.Document.DefaultDocumentAggregatorProperties" />
-  <Property key="CodeActionUsages" />
   <Property key="MonoDevelop.Projects.GlobalPolicyMimeTypes" value="" />
   <Property key="Author.Copyright" value="np185072" />
   <Property key="Author.Company" value="" />
@@ -519,4 +516,12 @@
   <Property key="Author.Email" value="" />
   <Property key="AutoSetPatternCasing" value="False" />
   <Property key="AssemblyBrowser.Language" value="0" />
+  <Property key="MonoDevelop.FindReplaceDialogs.FindHistory" value="UpdateSmoothedMovementDirection" />
+  <Property key="MonoDevelop.FindReplaceDialogs.ReplaceHistory" value="" />
+  <Property key="BufferSearchEngine" value="default" />
+  <Property key="IsCaseSensitive" value="False" />
+  <Property key="IsWholeWordOnly" value="False" />
+  <Property key="FontProperties" />
+  <Property key="MonoDevelop.TextEditor.Document.Document.DefaultDocumentAggregatorProperties" />
+  <Property key="CodeActionUsages" />
 </MonoDevelopProperties>
