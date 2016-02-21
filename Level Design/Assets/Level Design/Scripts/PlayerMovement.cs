@@ -63,7 +63,7 @@ public class PlayerMovement: MonoBehaviour {
 	}
 
 	void OnControllerColliderHit (ControllerColliderHit hit) {
-		standingOn = hit.collider.name;
+		standingOn = hit.collider.tag;
 	}
 
 	/** 
@@ -169,7 +169,25 @@ public class PlayerMovement: MonoBehaviour {
 	 */
 	void MoveOnSteepSlope () {
 
-		if (characterState != CharacterState.Jumping && characterState != CharacterState.WalkingOnAir && standingOn != "Wall") {
+		if (standingOn == "Obstacle" && characterState == CharacterState.Walking && !controller.isGrounded) {
+			characterState = CharacterState.WalkingOnAir;
+		}
+
+		if (standingOn == "Obstacle" && characterState != CharacterState.WalkingOnAir) {
+			RaycastHit hit;
+
+			Vector3 slopeAdjust = Vector3.zero;
+
+			if (Physics.Raycast (transform.position, -Vector3.up, out hit)) {
+				if (hit.distance < 2) {
+					slopeAdjust.y = hit.distance - controller.height / 2;
+				}
+			}
+
+			moveDirection -= slopeAdjust / Time.deltaTime;
+		}
+
+		if (characterState != CharacterState.Jumping && characterState != CharacterState.WalkingOnAir && standingOn != "Obstacle") {
 			RaycastHit hit;
 
 			Vector3 slopeAdjust = Vector3.zero;
@@ -184,23 +202,7 @@ public class PlayerMovement: MonoBehaviour {
 		}
 
 
-		if (standingOn == "Wall" && characterState == CharacterState.Walking && !controller.isGrounded) {
-			characterState = CharacterState.WalkingOnAir;
-		}
 
-		if (standingOn == "Wall" && characterState != CharacterState.WalkingOnAir) {
-			RaycastHit hit;
-
-			Vector3 slopeAdjust = Vector3.zero;
-
-			if (Physics.Raycast (transform.position, -Vector3.up, out hit)) {
-				if (hit.distance < 2) {
-					slopeAdjust.y = hit.distance - controller.height / 2;
-				}
-			}
-
-			moveDirection -= slopeAdjust / Time.deltaTime;
-		}
 
 	}
 }
