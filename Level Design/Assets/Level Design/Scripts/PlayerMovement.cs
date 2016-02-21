@@ -35,6 +35,8 @@ public class PlayerMovement: MonoBehaviour {
 	private float horizontalBtn = 0;
 	private float rotationBtn = 0;
 
+	public string standingOn = null;
+
 	/** 
 	 * Update is called once per frame.
 	 */
@@ -58,6 +60,10 @@ public class PlayerMovement: MonoBehaviour {
 
 		// Apply movement.
 		controller.Move (moveDirection * Time.deltaTime);
+	}
+
+	void OnControllerColliderHit (ControllerColliderHit hit) {
+		standingOn = hit.collider.name;
 	}
 
 	/** 
@@ -101,6 +107,7 @@ public class PlayerMovement: MonoBehaviour {
 				} else {
 					characterState = CharacterState.Walking;
 				}
+
 			} else if (Input.GetKey (KeyCode.A)) {
 				horizontalBtn = -1;
 				if (characterState == CharacterState.Jumping || characterState == CharacterState.WalkingOnAir) {
@@ -154,7 +161,6 @@ public class PlayerMovement: MonoBehaviour {
 		moveDirection.y -= gravity * Time.deltaTime;
 
 		// Apply deltaTime.
-
 		transform.Rotate (rotateDirection * Time.deltaTime);
 	}
 
@@ -163,13 +169,32 @@ public class PlayerMovement: MonoBehaviour {
 	 */
 	void MoveOnSteepSlope () {
 
-		if (characterState != CharacterState.Jumping && characterState != CharacterState.WalkingOnAir) {
+		if (characterState != CharacterState.Jumping && characterState != CharacterState.WalkingOnAir && standingOn != "Wall") {
 			RaycastHit hit;
 
 			Vector3 slopeAdjust = Vector3.zero;
 	
 			if (Physics.Raycast (transform.position, -Vector3.up, out hit)) {
-				if (hit.distance < 5.0) {
+				if (hit.distance < 5) {
+					slopeAdjust.y = hit.distance - controller.height / 2;
+				}
+			}
+
+			moveDirection -= slopeAdjust / Time.deltaTime;
+		}
+
+
+		if (standingOn == "Wall" && characterState == CharacterState.Walking && !controller.isGrounded) {
+			characterState = CharacterState.WalkingOnAir;
+		}
+
+		if (standingOn == "Wall" && characterState != CharacterState.WalkingOnAir) {
+			RaycastHit hit;
+
+			Vector3 slopeAdjust = Vector3.zero;
+
+			if (Physics.Raycast (transform.position, -Vector3.up, out hit)) {
+				if (hit.distance < 2) {
 					slopeAdjust.y = hit.distance - controller.height / 2;
 				}
 			}
