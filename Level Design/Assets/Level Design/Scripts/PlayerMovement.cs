@@ -17,6 +17,9 @@ public class PlayerMovement: MonoBehaviour {
 	/* CharacterState variable, to store the current state. */
 	public CharacterState characterState = CharacterState.WalkingOnAir;
 
+	/* Variable to monitor where player is standing on. */
+	public string standingOn = null;
+
 	/* Direction Variables. */
 	private Vector3 moveDirection = Vector3.zero;
 	private Vector3 rotateDirection = Vector3.zero;
@@ -34,8 +37,6 @@ public class PlayerMovement: MonoBehaviour {
 	private float verticalBtn = 0;
 	private float horizontalBtn = 0;
 	private float rotationBtn = 0;
-
-	public string standingOn = null;
 
 	/** 
 	 * Update is called once per frame.
@@ -55,6 +56,9 @@ public class PlayerMovement: MonoBehaviour {
 		// Allow Player Movement.
 		Movement ();
 
+		// Check if moving on air.
+		CheckIfMovingOnAir ();
+
 		// Allow Player Moving on a slope.
 		MoveOnSteepSlope ();
 
@@ -62,6 +66,9 @@ public class PlayerMovement: MonoBehaviour {
 		controller.Move (moveDirection * Time.deltaTime);
 	}
 
+	/** 
+	 * Check where the player is standing on.
+	 */
 	void OnControllerColliderHit (ControllerColliderHit hit) {
 		standingOn = hit.collider.tag;
 	}
@@ -73,18 +80,10 @@ public class PlayerMovement: MonoBehaviour {
 		// Vertical Movement.
 		if (Input.GetKey (KeyCode.UpArrow)) {
 			verticalBtn = 1;
-			if (characterState == CharacterState.Jumping || characterState == CharacterState.WalkingOnAir) {
-				characterState = CharacterState.WalkingOnAir;
-			} else {
-				characterState = CharacterState.Walking;
-			}
+			CheckIfMovingOnAir ();
 		} else if (Input.GetKey (KeyCode.DownArrow)) {
 			verticalBtn = -1;
-			if (characterState == CharacterState.Jumping || characterState == CharacterState.WalkingOnAir) {
-				characterState = CharacterState.WalkingOnAir;
-			} else {
-				characterState = CharacterState.Walking;
-			}
+			CheckIfMovingOnAir ();
 		} else {
 			verticalBtn = 0;
 		}
@@ -102,19 +101,10 @@ public class PlayerMovement: MonoBehaviour {
 		if (sideWalk) {
 			if (Input.GetKey (KeyCode.D)) {
 				horizontalBtn = 1;
-				if (characterState == CharacterState.Jumping || characterState == CharacterState.WalkingOnAir) {
-					characterState = CharacterState.WalkingOnAir;
-				} else {
-					characterState = CharacterState.Walking;
-				}
-
+				CheckIfMovingOnAir ();
 			} else if (Input.GetKey (KeyCode.A)) {
 				horizontalBtn = -1;
-				if (characterState == CharacterState.Jumping || characterState == CharacterState.WalkingOnAir) {
-					characterState = CharacterState.WalkingOnAir;
-				} else {
-					characterState = CharacterState.Walking;
-				}
+				CheckIfMovingOnAir ();
 			} else {
 				horizontalBtn = 0;
 			}
@@ -165,44 +155,46 @@ public class PlayerMovement: MonoBehaviour {
 	}
 
 	/**
+	 * Check if player is moving on air.
+	 */
+	void CheckIfMovingOnAir () {
+		if (characterState == CharacterState.Jumping || characterState == CharacterState.WalkingOnAir) {
+			characterState = CharacterState.WalkingOnAir;
+		} else if (standingOn == "Obstacle" && characterState == CharacterState.Walking && !controller.isGrounded) {
+			characterState = CharacterState.WalkingOnAir;
+		} else {
+			characterState = CharacterState.Walking;
+		}
+	}
+
+	/**
 	 * Move on steep slope.
 	 */
 	void MoveOnSteepSlope () {
-
-		if (standingOn == "Obstacle" && characterState == CharacterState.Walking && !controller.isGrounded) {
-			characterState = CharacterState.WalkingOnAir;
-		}
+		float maxDistance; 
 
 		if (standingOn == "Obstacle" && characterState != CharacterState.WalkingOnAir) {
-			RaycastHit hit;
-
-			Vector3 slopeAdjust = Vector3.zero;
-
-			if (Physics.Raycast (transform.position, -Vector3.up, out hit)) {
-				if (hit.distance < 2) {
-					slopeAdjust.y = hit.distance - controller.height / 2;
-				}
-			}
-
-			moveDirection -= slopeAdjust / Time.deltaTime;
+			maxDistance = 1.25f;
+			ApplySlopeStep (maxDistance);
+		} else if (characterState != CharacterState.Jumping && characterState != CharacterState.WalkingOnAir && standingOn != "Obstacle") {
+			maxDistance = 5;
+			ApplySlopeStep (maxDistance);
 		}
+	}
 
-		if (characterState != CharacterState.Jumping && characterState != CharacterState.WalkingOnAir && standingOn != "Obstacle") {
-			RaycastHit hit;
+	/**
+	 * Apply a step on a steep slope.
+	 */
+	void ApplySlopeStep (float maxDistance) {
+		RaycastHit hit;
 
-			Vector3 slopeAdjust = Vector3.zero;
-	
-			if (Physics.Raycast (transform.position, -Vector3.up, out hit)) {
-				if (hit.distance < 5) {
-					slopeAdjust.y = hit.distance - controller.height / 2;
-				}
+		Vector3 slopeAdjust = Vector3.zero;
+
+		if (Physics.Raycast (transform.position, -Vector3.up, out hit)) {
+			if (hit.distance < maxDistance) {
+				slopeAdjust.y = hit.distance - controller.height / 2;
 			}
-
-			moveDirection -= slopeAdjust / Time.deltaTime;
 		}
-
-
-
-
+		moveDirection -= slopeAdjust / Time.deltaTime;
 	}
 }
