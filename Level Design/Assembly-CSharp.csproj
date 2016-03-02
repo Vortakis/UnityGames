@@ -47,8 +47,12 @@
   <ItemGroup>
      <Compile Include="Assets\Level Design\Scripts\Cameras.cs" />
      <Compile Include="Assets\Level Design\Scripts\Common\config\CommonSignals.cs" />
-     <Compile Include="Assets\Level Design\Scripts\Common\config\SignalsContext.cs" />
-     <Compile Include="Assets\Level Design\Scripts\Common\controller\StartCommand.cs" />
+     <Compile Include="Assets\Level Design\Scripts\Common\config\SignalContext.cs" />
+     <Compile Include="Assets\Level Design\Scripts\GUI\controller\StartCommand.cs" />
+     <Compile Include="Assets\Level Design\Scripts\Game\GameBootstrap.cs" />
+     <Compile Include="Assets\Level Design\Scripts\Game\config\GameContext.cs" />
+     <Compile Include="Assets\Level Design\Scripts\Game\controller\StartCommand.cs" />
+     <Compile Include="Assets\Level Design\Scripts\Main\controller\StartCommand.cs" />
      <Compile Include="Assets\Level Design\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\StrangeIoC\examples\Assets\scripts\multiplecontexts\game\GameContext.cs" />
      <Compile Include="Assets\StrangeIoC\examples\Assets\scripts\multiplecontexts\game\GameRoot.cs" />

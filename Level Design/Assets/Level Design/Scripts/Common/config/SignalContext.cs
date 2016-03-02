@@ -8,12 +8,12 @@ using strange.extensions.command.impl;
 
 namespace unitygames.leveldesign {
 	
-	public class SignalsContext : MVCSContext {
+	public class SignalContext : MVCSContext {
 
 		/*
 		 * Constructor. 
 		 */
-		public SignalsContext (MonoBehaviour view) : base (view) {
+		public SignalContext (MonoBehaviour contextView) : base (contextView) {
 		}
 
 		/* 
@@ -46,7 +46,7 @@ namespace unitygames.leveldesign {
 
 			//StartSignal is now fired instead of the START event.
 			//Note how we've bound it "Once". This means that the mapping goes away as soon as the command fires.
-			commandBinder.Bind<StartSignal> ().To<StartCommand> ().Once ();
+			implicitBinder.ScanForAnnotatedClasses (new string[]{ "unitygames.leveldesign" });
 
 		}
 
