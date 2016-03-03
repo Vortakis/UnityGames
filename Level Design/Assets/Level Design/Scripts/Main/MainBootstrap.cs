@@ -2,13 +2,13 @@
 using System.Collections;
 using strange.extensions.context.impl;
 
-namespace unitygames.leveldesign.game {
+namespace unitygames.leveldesign.main {
 	
-	public class GameBootstrap : ContextView {
+	public class MainBootstrap : ContextView {
 
 		void Awake () {
 			//Instantiate the context, passing it this instance.
-			context = new GameContext (this);
+			context = new MainContext (this);
 		}
 
 	}

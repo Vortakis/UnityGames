@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace unitygames.leveldesign.game {
+namespace unitygames.leveldesign.gui {
 
-	public class GameContext : SignalContext {
+	public class GuiContext : SignalContext {
 
-		public GameContext (MonoBehaviour contextView) : base (contextView) {
+		public GuiContext (MonoBehaviour contextView) : base (contextView) {
 		}
 
 		/*
@@ -17,7 +17,7 @@ namespace unitygames.leveldesign.game {
 
 			//StartSignal is now fired instead of the START event.
 			//Note how we've bound it "Once". This means that the mapping goes away as soon as the command fires.
-			commandBinder.Bind<StartSignal> ().To<StartGameCommand> ().Once ();
+			commandBinder.Bind<StartSignal> ().To<StartGuiCommand> ().Once ();
 
 		}
 			

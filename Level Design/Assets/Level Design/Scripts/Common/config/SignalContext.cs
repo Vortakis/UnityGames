@@ -6,6 +6,7 @@ using strange.extensions.command.api;
 using strange.extensions.command.impl;
 
 
+
 namespace unitygames.leveldesign {
 	
 	public class SignalContext : MVCSContext {
@@ -15,6 +16,7 @@ namespace unitygames.leveldesign {
 		 */
 		public SignalContext (MonoBehaviour contextView) : base (contextView) {
 		}
+			
 
 		/* 
 		 * Unbind the default EventCommandBinder and rebind the SignalCommandBinder.
@@ -44,8 +46,6 @@ namespace unitygames.leveldesign {
 
 			base.mapBindings ();
 
-			//StartSignal is now fired instead of the START event.
-			//Note how we've bound it "Once". This means that the mapping goes away as soon as the command fires.
 			implicitBinder.ScanForAnnotatedClasses (new string[]{ "unitygames.leveldesign" });
 
 		}
