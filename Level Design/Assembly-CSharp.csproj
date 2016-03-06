@@ -45,7 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Level Design\HierarchyIcon.cs" />
      <Compile Include="Assets\Level Design\Scripts\Cameras.cs" />
      <Compile Include="Assets\Level Design\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\uFrame\Kernel\EventAggregator.cs" />
